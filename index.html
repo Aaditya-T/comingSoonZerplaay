@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperFactory Coming Soon!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+
+    <style>
+        .electrolize-regular {
+            font-family: "Electrolize", serif;
+            font-weight: 400;
+            font-style: normal;
+            color: white;
+        }
+
+        body {
+            background-image: url(./static/bg.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: black;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-container {
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: "Electrolize", sans-serif;
+            font-size: 4.5rem;
+            margin: 0;
+            letter-spacing: 4px;
+        }
+
+        .main-title span {
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                         0 0 20px rgba(255, 255, 255, 0.8),
+                         0 0 30px rgba(255, 255, 255, 0.8),
+                         0 0 40px rgba(255, 255, 255, 0.4);
+        }
+
+        .main-title .highlight {
+            color: #FFE135;
+            text-shadow: 0 0 10px rgba(255, 229, 53, 0.8),
+                         0 0 20px rgba(255, 229, 53, 0.8),
+                         0 0 30px rgba(255, 229, 53, 0.8),
+                         0 0 40px rgba(255, 229, 53, 0.4);
+        }
+
+        .subtitle {
+            font-family: "Electrolize", sans-serif;
+            font-size: 1.8rem;
+            color: white;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                         0 0 20px rgba(255, 255, 255, 0.4);
+            text-align: end;
+        }
+
+        @media (max-width: 768px) {
+            .subtitle {
+                text-align: center;
+            }
+        }
+
+        .subtitle .highlight {
+            color: #FFE135;
+            text-shadow: 0 0 10px rgba(255, 229, 53, 0.8),
+                         0 0 20px rgba(255, 229, 53, 0.8);
+        }
+
+        .powered-by {
+            font-family: "Electrolize", sans-serif;
+            font-size: 1rem;
+            color: white;
+            margin-top: 140px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                         0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .powered-by .highlight {
+            color: #FFE135;
+            text-shadow: 0 0 10px rgba(255, 229, 53, 0.8),
+                         0 0 15px rgba(255, 229, 53, 0.8);
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                             0 0 20px rgba(255, 255, 255, 0.5),
+                             0 0 30px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 1),
+                             0 0 30px rgba(255, 255, 255, 1),
+                             0 0 40px rgba(255, 255, 255, 1);
+            }
+        }
+
+        .main-title span, .subtitle, .powered-by {
+            animation: shimmer 2s infinite;
+        }
+
+        .main-title .highlight, .subtitle .highlight, .powered-by .highlight {
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes logoShimmer {
+            0%, 100% {
+                filter: brightness(1) drop-shadow(0 0 2px rgba(255, 255, 255, 0.5))
+                        drop-shadow(0 0 4px rgba(255, 255, 255, 0.5))
+                        drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+                opacity: 0.8;
+            }
+            50% {
+                filter: brightness(1.2) drop-shadow(0 0 4px rgba(255, 255, 255, 0.8))
+                        drop-shadow(0 0 8px rgba(255, 255, 255, 0.8))
+                        drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            width: 50px;
+            height: 70px;
+            vertical-align: middle;
+            animation: logoShimmer 2s infinite;
+            filter: drop-shadow(0 0 4px rgb(255, 255, 255));
+        }
+
+        /* Audio Player Styling */
+        audio {
+            margin-top: 20px;
+            filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+            width: 100%;
+        }
+
+        /* Webkit (Chrome, Safari, Edge) specific styles */
+        audio::-webkit-media-controls-panel {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 0.1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+        }
+
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display {
+            color: #FFE135;
+            font-family: "Electrolize", sans-serif;
+            text-shadow: 0 0 5px rgba(255, 229, 53, 0.8);
+        }
+
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-mute-button {
+            filter: invert(1);
+            opacity: 0.9;
+        }
+
+        audio::-webkit-media-controls-play-button:hover,
+        audio::-webkit-media-controls-mute-button:hover {
+            opacity: 1;
+            filter: invert(1) drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+        }
+
+        audio::-webkit-media-controls-timeline {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 3px;
+        }
+
+        audio::-webkit-media-controls-volume-slider {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0 5px;
+        }
+
+        /* Firefox specific styles */
+        @-moz-document url-prefix() {
+            audio {
+                background-color: rgba(0, 0, 0, 0.7);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 20px;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo-container">
+        <h1 class="main-title">
+            <span>S</span><span class="highlight">UP</span><span>ER FACTORY <img src="https://backendzerpaay.b-cdn.net/thunder.png" alt="Super Factory" class="logo" width="100px" height="100px"></span> 
+        </h1>
+        <div class="subtitle">
+            MEMECOIN <span class="highlight">GENERATOR</span>
+        </div>
+        <audio id="audio-player" class="" controls autoplay></audio>
+        <div class="powered-by">
+            POWERED BY <span class="highlight">ZERPAAY</span>
+        </div>
+    </div>
+
+    <script>
+        // List of songs (URLs from BunnyCDN)
+        const songs = [
+            "https://backendzerpaay.b-cdn.net/music/2025%20Eye.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Ah%20Sad%20Ah%20Sad%20Disco%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Ah%20Sad%20Ah%20Sad%20Disco.mp3", 
+            "https://backendzerpaay.b-cdn.net/music/Alex%20said%20NO.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Alex%20said%20NO%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Chris's%20Big%20Bag.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Chris's%20Big%20Bag%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Buy%20Back.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Buy%20Back%20BIS.mp3"
+        ];
+
+        // Select a random song
+        const randomSong = songs[Math.floor(Math.random() * songs.length)];
+
+        // Play the random song
+        const audioPlayer = document.getElementById("audio-player");
+        audioPlayer.src = randomSong;
+    </script>
+</body>
+</html>
