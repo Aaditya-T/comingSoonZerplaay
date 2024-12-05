@@ -397,6 +397,42 @@
         @media (max-width: 768px) {
             .while-waiting {
                 font-size: 1rem;
+                padding: 0px 20px;
+            }
+        }
+
+        /* Targeting iOS devices using a WebKit-specific feature */
+        @supports (-webkit-touch-callout: none) {
+            /* Modify the shimmer animation for iOS */
+            @keyframes shimmer {
+                0%, 100% {
+                    text-shadow: 
+                        0 0 5px rgba(255, 255, 255, 0.3),
+                        0 0 10px rgba(255, 255, 255, 0.3),
+                        0 0 15px rgba(255, 255, 255, 0.3);
+                }
+                50% {
+                    text-shadow: 
+                        0 0 10px rgba(255, 255, 255, 0.6),
+                        0 0 15px rgba(255, 255, 255, 0.6),
+                        0 0 20px rgba(255, 255, 255, 0.6);
+                }
+            }
+
+            /* Modify the highlight shimmer animation for iOS */
+            @keyframes highlightShimmer {
+                0%, 100% {
+                    text-shadow: 
+                        0 0 5px rgba(255, 192, 0, 0.3),
+                        0 0 10px rgba(255, 192, 0, 0.3),
+                        0 0 15px rgba(255, 192, 0, 0.3);
+                }
+                50% {
+                    text-shadow: 
+                        0 0 10px rgba(255, 192, 0, 0.6),
+                        0 0 15px rgba(255, 192, 0, 0.6),
+                        0 0 20px rgba(255, 192, 0, 0.6);
+                }
             }
         }
     </style>
