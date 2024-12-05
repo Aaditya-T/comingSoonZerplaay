@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- meta image -->
+    <meta name="image" property="og:image" content="https://backendzerpaay.b-cdn.net/banner_x_720.png">
     <title>SuperFactory Coming Soon!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -333,7 +335,7 @@
             }
 
             audio {
-                width: 70%;
+                width: 60%;
             }
         }
 
@@ -359,7 +361,7 @@
             }
 
             audio {
-                width: 80%;
+                width: 70%;
             }
 
             .main-title img.logo {
@@ -415,7 +417,7 @@
         <div class="while-waiting">
             While waiting for the Super Factory launch, chill out with some tunes and relax!
         </div>
-        <audio id="audio-player" controls autoplay controlsList="nodownload"></audio>
+        <audio id="audio-player" controls autoplay controlsList="nodownload noplaybackrate noprogressbar"></audio>
         <div class="controls">
             <button class="control-btn" onclick="previousSong()">
                 <svg width="24" height="24" viewBox="0 0 24 24">
