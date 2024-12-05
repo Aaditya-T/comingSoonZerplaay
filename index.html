@@ -18,7 +18,7 @@
         }
 
         body {
-            background-image: url(./static/bg.png);
+            background-image: url(https://backendzerpaay.b-cdn.net/bg.png);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -110,11 +110,11 @@
             }
         }
 
-        .main-title span, .subtitle, .powered-by {
+        .main-title span, .subtitle {
             animation: shimmer 2s infinite;
         }
 
-        .main-title .highlight, .subtitle .highlight, .powered-by .highlight {
+        .main-title .highlight, .subtitle .highlight {
             animation: shimmer 2s infinite;
         }
 
@@ -145,7 +145,7 @@
         audio {
             margin-top: 20px;
             filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
-            width: 100%;
+            width: 60%;
         }
 
         /* Webkit (Chrome, Safari, Edge) specific styles */
@@ -195,6 +195,30 @@
                 padding: 5px;
             }
         }
+
+        .controls {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .control-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-family: "Electrolize", sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
 
@@ -206,32 +230,121 @@
         <div class="subtitle">
             MEMECOIN <span class="highlight">GENERATOR</span>
         </div>
-        <audio id="audio-player" class="" controls autoplay></audio>
+        <div class="powered-by" style="margin-top: 30px;">
+            While waiting for the Super Factory launch, chill out with some tunes and relax!
+        </div>
+        <audio id="audio-player" controls autoplay></audio>
+        <div class="controls">
+            <button class="control-btn" onclick="previousSong()">Previous</button>
+            <button class="control-btn" onclick="nextSong()">Next</button>
+        </div>
         <div class="powered-by">
             POWERED BY <span class="highlight">ZERPAAY</span>
         </div>
     </div>
 
     <script>
-        // List of songs (URLs from BunnyCDN)
+        // List of songs
         const songs = [
             "https://backendzerpaay.b-cdn.net/music/2025%20Eye.mp3",
             "https://backendzerpaay.b-cdn.net/music/Ah%20Sad%20Ah%20Sad%20Disco%20BIS.mp3",
-            "https://backendzerpaay.b-cdn.net/music/Ah%20Sad%20Ah%20Sad%20Disco.mp3", 
-            "https://backendzerpaay.b-cdn.net/music/Alex%20said%20NO.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Ah%20Sad%20Ah%20Sad%20Disco.mp3",
             "https://backendzerpaay.b-cdn.net/music/Alex%20said%20NO%20BIS.mp3",
-            "https://backendzerpaay.b-cdn.net/music/Chris's%20Big%20Bag.mp3",
-            "https://backendzerpaay.b-cdn.net/music/Chris's%20Big%20Bag%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Alex%20said%20NO.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Buy%20Back%20BIS.mp3",
             "https://backendzerpaay.b-cdn.net/music/Buy%20Back.mp3",
-            "https://backendzerpaay.b-cdn.net/music/Buy%20Back%20BIS.mp3"
+            "https://backendzerpaay.b-cdn.net/music/Chris's%20Big%20Bag%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Chris's%20Big%20Bag.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Cinnamon%20Video%20Deception%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Cinnamon%20Video%20Deception.mp3",
+            "https://backendzerpaay.b-cdn.net/music/CKJ%20Where%20Is%20My%20Money%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/CKJ%20Where%20Is%20My%20Money.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Cryptic%20Currents%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Cryptic%20Currents.mp3",
+            "https://backendzerpaay.b-cdn.net/music/DOGE%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/DOGE.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Escrow%20Blues%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Escrow%20Blues.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Flip%20The%20Switch%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Flip%20The%20Switch.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Holiday%20Trading%20Blues%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Holiday%20Trading%20Blues.mp3",
+            "https://backendzerpaay.b-cdn.net/music/ISO%2020022%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/ISO%2020022.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Jed%20Are%20You%20Done%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Jed%20Are%20You%20Done.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Lift%20Up%20the%20World.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Quick%20Lesson%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Quick%20Lesson.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Radioactive%20Dreams%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Radioactive%20Dreams.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Ripple%20Riddlers%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Ripple%20Riddlers.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Still%20Waiting%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Still%20Waiting%20on%20the%20Flip%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Still%20Waiting%20on%20the%20Flip.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Still%20Waiting.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Super%20Factory%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Super%20Factory.mp3",
+            "https://backendzerpaay.b-cdn.net/music/The%20Eyebrow%20of%20Brad%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/The%20Eyebrow%20of%20Brad.mp3",
+            "https://backendzerpaay.b-cdn.net/music/The%20Whisperer's%20Groove%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/The%20Whisperer's%20Groove.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Vitalik's%20Crazy%20Love%20Affair%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Vitalik's%20Crazy%20Love%20Affair.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Xahau's%20Rhythm%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Xahau's%20Rhythm.mp3",
+            "https://backendzerpaay.b-cdn.net/music/XRP%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/XRP%20Meaning%20BIS.mp3",
+            "https://backendzerpaay.b-cdn.net/music/XRP%20Meaning.mp3",
+            "https://backendzerpaay.b-cdn.net/music/XRP.mp3",
+            "https://backendzerpaay.b-cdn.net/music/Zerpaay%20ZRPY.mp3"
         ];
 
-        // Select a random song
-        const randomSong = songs[Math.floor(Math.random() * songs.length)];
+        // Shuffle function
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
 
-        // Play the random song
+        // Create shuffled playlist
+        let currentPlaylist = [...songs];
+        let currentSongIndex = 0;
+        
+        // Shuffle on load
+        shuffleArray(currentPlaylist);
+
         const audioPlayer = document.getElementById("audio-player");
-        audioPlayer.src = randomSong;
+
+        // Play song function
+        function playSong(index) {
+            currentSongIndex = index;
+            audioPlayer.src = currentPlaylist[currentSongIndex];
+            audioPlayer.play();
+        }
+
+        // Next song function
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % currentPlaylist.length;
+            playSong(currentSongIndex);
+        }
+
+        // Previous song function
+        function previousSong() {
+            currentSongIndex = (currentSongIndex - 1 + currentPlaylist.length) % currentPlaylist.length;
+            playSong(currentSongIndex);
+        }
+
+        // Auto-play next song when current song ends
+        audioPlayer.addEventListener('ended', () => {
+            nextSong();
+        });
+
+        // Start playing first song
+        playSong(0);
     </script>
 </body>
 </html>
