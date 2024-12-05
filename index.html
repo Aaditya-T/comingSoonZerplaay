@@ -200,12 +200,12 @@
             background: rgba(0, 0, 0, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
-            padding: 10px 20px;
+            padding: 15px 20px;
             border-radius: 15px;
             cursor: pointer;
             font-family: "Electrolize", sans-serif;
             transition: all 0.3s ease;
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
 
         .control-btn:hover {
@@ -315,7 +315,7 @@
         @media (max-width: 768px) {
             .main-title {
                 font-size: 4.5rem;
-                margin-top: -100px;
+                margin-top: -120px;
             }
 
             .subtitle {
@@ -340,7 +340,7 @@
         @media (max-width: 480px) {
             .main-title {
                 font-size: 3rem;
-                margin-top: -100px;
+                margin-top: -120px;
             }
 
             .subtitle {
@@ -396,7 +396,6 @@
                 font-size: 1rem;
             }
         }
-
     </style>
 </head>
 
@@ -418,8 +417,18 @@
         </div>
         <audio id="audio-player" controls autoplay controlsList="nodownload"></audio>
         <div class="controls">
-            <button class="control-btn" onclick="previousSong()">&#9664;&#9664;</button>
-            <button class="control-btn" onclick="nextSong()">&#9654;&#9654;</button>
+            <button class="control-btn" onclick="previousSong()">
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                    <polygon points="19,4 19,20 11,12 19,4" fill="currentColor"/>
+                    <polygon points="11,4 11,20 3,12 11,4" fill="currentColor"/>
+                </svg>
+            </button>
+            <button class="control-btn" onclick="nextSong()">
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                    <polygon points="5,4 5,20 13,12 5,4" fill="currentColor"/>
+                    <polygon points="13,4 13,20 21,12 13,4" fill="currentColor"/>
+                </svg>
+            </button>
         </div>
         <div style="margin-top: 40px;">
             <a href="https://xpmarket.com/amm/pool/ZRPY-rsxkrpsYaeTUdciSFJwvto7MKSrgGnvYvA/XRP" target="_blank">
